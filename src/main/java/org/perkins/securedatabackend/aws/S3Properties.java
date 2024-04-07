@@ -5,7 +5,7 @@ import software.amazon.awssdk.regions.Region;
 
 @ConfigurationProperties("s3")
 public class S3Properties {
-    private String bucketName = "grantstorage";
+    private String bucketName = "grant-storage";
     private Region region = Region.US_EAST_1;
 
     public String getBucketName() {

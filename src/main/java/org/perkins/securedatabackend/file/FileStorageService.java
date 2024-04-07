@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class FileStorageService {
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, destinationPath, StandardCopyOption.REPLACE_EXISTING);
             }
-            logger.info("Wrote file to: "+destinationPath.toString());
+            logger.info("Wrote file to: " + destinationPath);
             return destinationPath;
         } catch (IOException e) {
             throw new FileStorageException("Failed to store file.", e);
@@ -57,9 +56,9 @@ public class FileStorageService {
         try {
             Files.delete(path);
         } catch (IOException e) {
-            throw new FileStorageException("Failed to delete file at "+path.toString(), e);
+            throw new FileStorageException("Failed to delete file at " + path.toString(), e);
         }
-        logger.info("Deleted file found at: "+path.toString());
+        logger.info("Deleted file found at: " + path.toString());
     }
 
     @PostConstruct
