@@ -1,6 +1,6 @@
 package org.perkins.securedatabackend.file;
 
-import org.perkins.securedatabackend.aws.S3Service;
+import org.perkins.securedatabackend.aws.s3.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,18 +1,16 @@
-package org.perkins.securedatabackend.aws;
+package org.perkins.securedatabackend.aws.s3;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.perkins.securedatabackend.aws.rds.DAO;
 import org.perkins.securedatabackend.security.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-import software.amazon.awssdk.services.s3.model.S3Exception;
 
 import java.nio.file.Path;
 import java.util.UUID;
@@ -32,6 +30,7 @@ public class S3Service {
         bucketName = properties.getBucketName();
         region = properties.getRegion();
         s3Client = S3Client.builder().region(region).build();
+        DAO dao = new DAO();
     }
 
 
