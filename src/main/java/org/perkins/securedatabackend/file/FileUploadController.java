@@ -2,10 +2,7 @@ package org.perkins.securedatabackend.file;
 
 import org.perkins.securedatabackend.aws.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Path;
@@ -19,8 +16,9 @@ public class FileUploadController {
     private S3Service s3Service;
 
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile file) throws FileStorageException {
+    public String upload(@RequestParam(value = "file", required = false) MultipartFile file) throws FileStorageException {
         Path tmpPath = fileStorageService.store(file);
         s3Service.upload(tmpPath);
         fileStorageService.delete(tmpPath);
