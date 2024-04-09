@@ -16,7 +16,7 @@ public class FileUploadController {
     private S3Service s3Service;
 
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin
     @PostMapping("/upload")
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file) throws FileStorageException {
         Path tmpPath = fileStorageService.store(file);
